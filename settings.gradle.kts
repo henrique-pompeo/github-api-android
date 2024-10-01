@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "GitHub API Android"
 include(":app")
- 
+include(":feature")
