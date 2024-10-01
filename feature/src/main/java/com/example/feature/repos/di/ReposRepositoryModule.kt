@@ -4,13 +4,16 @@ import com.example.feature.repos.data.mapper.ReposMapper
 import com.example.feature.repos.data.repository.ReposRepositoryImpl
 import com.example.feature.repos.data.service.ReposService
 import com.example.feature.repos.domain.interfaces.ReposRepository
+import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-object RepositoryModule {
+@Module
+@InstallIn(SingletonComponent::class)
+object ReposRepositoryModule {
 
     @Provides
-    @Singleton
     fun provideRepository(service: ReposService, mapper: ReposMapper): ReposRepository {
         return ReposRepositoryImpl(service, mapper)
     }

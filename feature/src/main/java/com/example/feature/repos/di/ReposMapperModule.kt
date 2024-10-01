@@ -1,12 +1,16 @@
 package com.example.feature.repos.di
 
 import com.example.feature.repos.data.mapper.ReposMapper
+import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-object MapperModule {
+@Module
+@InstallIn(SingletonComponent::class)
+object ReposMapperModule {
+
     @Provides
-    @Singleton
     fun provideMapper(): ReposMapper {
         return ReposMapper()
     }

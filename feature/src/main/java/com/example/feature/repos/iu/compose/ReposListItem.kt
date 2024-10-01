@@ -1,2 +1,162 @@
 package com.example.feature.repos.iu.compose
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.AssistChip
+import androidx.compose.material3.AssistChipDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
+import com.example.feature.R
+import com.example.feature.commons.utils.extensions.IntExt.formatNumberToString
+import com.example.feature.repos.domain.model.ReposModel
+import com.example.feature.repos.domain.model.ReposOwnerModel
+
+@Composable
+fun ReposListItem(reposModel: ReposModel) {
+    Box(
+        modifier = Modifier.padding(8.dp)
+    ) {
+        Card(
+            modifier = Modifier
+                .align(Alignment.Center)
+                .fillMaxWidth()
+                .height(130.dp)
+        ) {
+            ListItem(
+                colors = ListItemDefaults.colors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                ),
+                overlineContent = {
+                    Text(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = reposModel.name,
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                },
+                headlineContent = {
+                    Text(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = reposModel.description,
+                        style = MaterialTheme.typography.bodySmall,
+                        maxLines = 2,
+                        minLines = 2,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                },
+                supportingContent = {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        SupportingInfo(
+                            onClick = { },
+                            text = reposModel.forksCount.formatNumberToString(),
+                            icon = painterResource(R.drawable.code_fork),
+                            contentDescription = "Número de forks"
+                        )
+                        SupportingInfo(
+                            onClick = { },
+                            text = reposModel.stargazersCount.formatNumberToString(),
+                            icon = painterResource(R.drawable.filled_star),
+                            contentDescription = "Número de stars"
+                        )
+                    }
+                },
+                trailingContent = {
+                    OwnerSection(reposModel.owner)
+                },
+                tonalElevation = 2.dp,
+                shadowElevation = 5.dp
+            )
+        }
+    }
+}
+
+@Composable
+fun SupportingInfo(
+    onClick: () -> Unit,
+    text: String,
+    icon: Painter,
+    contentDescription: String
+) {
+    AssistChip(
+        onClick = onClick,
+        label = { Text(text) },
+        leadingIcon = {
+            Image(
+                painter = icon,
+                contentDescription = contentDescription,
+                modifier = Modifier.size(AssistChipDefaults.IconSize)
+            )
+        },
+        modifier = Modifier.padding(end = 16.dp)
+    )
+}
+
+@Composable
+@OptIn(ExperimentalGlideComposeApi::class)
+fun OwnerSection(owner: ReposOwnerModel) {
+    Box(
+        Modifier
+            .fillMaxHeight()
+            .padding(vertical = 12.dp)
+            .width(120.dp)
+    ) {
+        Card(
+            modifier = Modifier.align(Alignment.TopCenter).size(58.dp),
+            shape = CircleShape,
+            elevation = CardDefaults.cardElevation(1.dp)
+        ) {
+            GlideImage(
+                model = owner.avatarUrl,
+                contentDescription = "Avatar de ${owner.login}"
+            )
+        }
+        Text(
+            modifier = Modifier.align(Alignment.BottomCenter),
+            text = owner.login,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
+    }
+}
+
+
+@Preview(showBackground = false)
+@Composable
+fun ReposListItemPreview() {
+    ReposListItem(
+        ReposModel(
+            name = "GitHub API Android",
+            description = "App Android para demonstrar o conteúdo da API do GitHub aepofkjapfeokpffkekfefff123f",
+            stargazersCount = 100000,
+            forksCount = 500000,
+            owner = ReposOwnerModel(
+                login = "henrique-pompeo-modesto",
+                avatarUrl = "https://avatars.githubusercontent.com/u/26586900?v=4"
+            )
+        )
+    )
+}

@@ -1,3 +1,5 @@
 package com.example.feature.repos.domain.model
 
-data class ReposItemsModel()
+data class ReposItemsModel(
+    val items: List<ReposModel>
+)

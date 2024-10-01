@@ -2,12 +2,18 @@ package com.example.feature.repos.di
 
 import com.example.feature.repos.domain.interfaces.ReposRepository
 import com.example.feature.repos.iu.viewmodel.ReposViewModel
+import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 
-object ViewModelModule {
+@Module
+@InstallIn(ViewModelComponent::class)
+object ReposViewModelModule {
+
     @Provides
-    @Singleton
+    @ViewModelScoped
     fun provideViewModel(repository: ReposRepository): ReposViewModel {
         return ReposViewModel(repository)
     }
