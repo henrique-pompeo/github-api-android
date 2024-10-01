@@ -1,11 +1,11 @@
 package com.example.githubapiandroid.di
 
+import com.example.feature.pulls.data.service.PullsService
 import com.example.feature.repos.data.service.ReposService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -20,6 +20,10 @@ object NetworkModule {
         .build()
 
     @Provides
-    fun provideService(retrofit: Retrofit): ReposService =
+    fun provideReposService(retrofit: Retrofit): ReposService =
         retrofit.create(ReposService::class.java)
+
+    @Provides
+    fun providePullsService(retrofit: Retrofit): PullsService =
+        retrofit.create(PullsService::class.java)
 }

@@ -1,4 +1,4 @@
-package com.example.githubapiandroid.ui.theme
+package com.example.feature.pulls.iu.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

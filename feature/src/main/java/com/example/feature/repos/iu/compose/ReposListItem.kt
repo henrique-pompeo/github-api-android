@@ -1,7 +1,7 @@
 package com.example.feature.repos.iu.compose
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -27,6 +27,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.example.feature.R
@@ -35,9 +37,16 @@ import com.example.feature.repos.domain.model.ReposModel
 import com.example.feature.repos.domain.model.ReposOwnerModel
 
 @Composable
-fun ReposListItem(reposModel: ReposModel) {
+fun ReposListItem(
+    reposModel: ReposModel,
+    navController: NavController
+) {
     Box(
-        modifier = Modifier.padding(8.dp)
+        modifier = Modifier
+            .padding(8.dp)
+            .clickable {
+                navController.navigate("pulls/${reposModel.owner.login}/${reposModel.name}")
+            }
     ) {
         Card(
             modifier = Modifier
@@ -157,6 +166,7 @@ fun ReposListItemPreview() {
                 login = "henrique-pompeo-modesto",
                 avatarUrl = "https://avatars.githubusercontent.com/u/26586900?v=4"
             )
-        )
+        ),
+        rememberNavController()
     )
 }

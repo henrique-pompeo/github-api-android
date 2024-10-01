@@ -30,13 +30,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.feature.repos.domain.model.ReposModel
 import com.example.feature.repos.domain.model.ReposOwnerModel
 import com.example.feature.repos.iu.ReposState
 import com.example.feature.repos.iu.viewmodel.ReposViewModel
 
 @Composable
-fun ReposScreen(viewModel: ReposViewModel) {
+fun ReposScreen(
+    viewModel: ReposViewModel,
+    navController: NavHostController
+) {
 
     val state by viewModel.reposState.collectAsState()
     val currentItems = remember { mutableListOf<ReposModel>() }
@@ -57,16 +62,19 @@ fun ReposScreen(viewModel: ReposViewModel) {
                     currentItems.addAll((state as ReposState.Success).repos.items)
                     SetupSuccess(
                         items = currentItems,
-                        loadMore = viewModel::loadMore
+                        loadMore = viewModel::loadMore,
+                        navController = navController
                     )
                 }
                 is ReposState.LoadMore -> {
                     currentItems.addAll((state as ReposState.LoadMore).repos.items)
                     SetupSuccess(
                         items = currentItems,
-                        loadMore = viewModel::loadMore
+                        loadMore = viewModel::loadMore,
+                        navController = navController
                     )
                 }
+                is ReposState.Empty -> TODO("EMPTY STATE")
                 is ReposState.Error -> SetupError(viewModel::getRepos)
                 is ReposState.Loading -> SetupLoading()
             }
@@ -96,7 +104,8 @@ fun Header() {
 @Composable
 fun SetupSuccess(
     loadMore: () -> Unit,
-    items: List<ReposModel>
+    items: List<ReposModel>,
+    navController: NavHostController
 ) {
     val listState = rememberLazyListState()
 
@@ -116,7 +125,10 @@ fun SetupSuccess(
         state = listState
     ) {
         items(items) { item ->
-            ReposListItem(reposModel = item)
+            ReposListItem(
+                reposModel = item,
+                navController = navController
+            )
         }
     }
 }
@@ -159,7 +171,8 @@ fun SetupSuccessPreview() {
 
     SetupSuccess(
         loadMore = { },
-        items = items
+        items = items,
+        navController = rememberNavController()
     )
 }
 
