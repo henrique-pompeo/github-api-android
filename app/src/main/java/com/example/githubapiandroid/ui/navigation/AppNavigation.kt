@@ -22,6 +22,7 @@ fun AppNavigation(navController: NavHostController = rememberNavController()) {
         composable("pulls/{owner}/{repo}") { backStackEntry ->
             val viewModel = hiltViewModel<PullsViewModel>()
             PullsScreen(
+                navController = navController,
                 viewModel = viewModel,
                 owner = backStackEntry.arguments?.getString("owner") ?: "",
                 repo = backStackEntry.arguments?.getString("repo") ?: ""

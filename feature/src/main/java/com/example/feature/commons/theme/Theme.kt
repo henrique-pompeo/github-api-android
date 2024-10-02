@@ -1,4 +1,4 @@
-package com.example.feature.pulls.iu.theme
+package com.example.feature.commons.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

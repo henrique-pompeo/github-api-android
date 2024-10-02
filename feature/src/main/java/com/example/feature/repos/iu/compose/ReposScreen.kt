@@ -1,5 +1,6 @@
 package com.example.feature.repos.iu.compose
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -74,7 +75,7 @@ fun ReposScreen(
                         navController = navController
                     )
                 }
-                is ReposState.Empty -> TODO("EMPTY STATE")
+                is ReposState.Empty -> SetupEmpty()
                 is ReposState.Error -> SetupError(viewModel::getRepos)
                 is ReposState.Loading -> SetupLoading()
             }
@@ -133,6 +134,20 @@ fun SetupSuccess(
     }
 }
 
+@Composable
+fun SetupEmpty() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(80.dp)
+    ) {
+        Text(
+            modifier = Modifier.align(Alignment.Center),
+            text = "Nenhum repositório encontrado"
+        )
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun SetupSuccessPreview() {
@@ -181,16 +196,18 @@ fun SetupError(tryAgain: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(80.dp)
+            .height(80.dp),
     ) {
         IconButton(
             modifier = Modifier.align(Alignment.TopCenter),
             onClick = { tryAgain.invoke() }
         ) {
             Icon(
-                modifier = Modifier.size(48.dp),
+                modifier = Modifier
+                    .size(48.dp),
                 imageVector = Icons.Filled.Refresh,
-                contentDescription = "Menu"
+                contentDescription = "Menu",
+
             )
         }
         Text(

@@ -1,5 +1,7 @@
 package com.example.feature.pulls.iu.compose
 
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.intl.Locale
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
@@ -27,43 +30,52 @@ import com.example.feature.pulls.domain.model.PullUserModel
 
 @Composable
 fun PullsListItem(pullModel: PullModel) {
-    Box {
-        Card(
+    Box(
+        modifier = Modifier
+            .padding(8.dp)
+            .border(width = 0.5.dp, color = MaterialTheme.colorScheme.surfaceVariant)
+    ) {
+        ListItem(
             modifier = Modifier
                 .align(Alignment.Center)
                 .fillMaxWidth()
-                .height(150.dp)
-        ) {
-            ListItem(
-                colors = ListItemDefaults.colors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                ),
-                overlineContent = {
+                .height(150.dp),
+            colors = ListItemDefaults.colors(
+                containerColor = MaterialTheme.colorScheme.background,
+            ),
+            overlineContent = {
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = pullModel.title,
+                    style = MaterialTheme.typography.titleMedium,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            },
+            headlineContent = {
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = pullModel.createdAt.format(Locale.current, "dd/MM/yyyy"),
+                    color = MaterialTheme.colorScheme.surfaceVariant,
+                    style = MaterialTheme.typography.bodySmall
+                )
+            },
+            supportingContent = {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
                     Text(
                         modifier = Modifier.fillMaxWidth(),
-                        text = pullModel.title,
-                        style = MaterialTheme.typography.titleMedium
+                        text = pullModel.body?: "Sem descrição",
+                        style = MaterialTheme.typography.bodySmall,
+                        maxLines = 2,
+                        minLines = 2,
+                        overflow = TextOverflow.Ellipsis
                     )
-                },
-                headlineContent = {
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = pullModel.createdAt.format(Locale.current, "dd/MM/yyyy"),
-                        style = MaterialTheme.typography.bodySmall
-                    )
-                },
-                supportingContent = {
-                    Column {
-                        Text(
-                            modifier = Modifier.fillMaxWidth(),
-                            text = pullModel.body?: "Sem descrição",
-                            style = MaterialTheme.typography.bodySmall
-                        )
-                        UserSection(pullModel.user)
-                    }
+                    UserSection(pullModel.user)
                 }
-            )
-        }
+            }
+        )
     }
 }
 
@@ -89,7 +101,10 @@ fun UserSection(user: PullUserModel) {
             )
         }
         Text(
-            text = user.login
+            text = user.login,
+            style = MaterialTheme.typography.bodySmall,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
         )
     }
 }
@@ -100,7 +115,7 @@ fun PullsListItemPreview() {
     PullsListItem(
         PullModel(
             title = "Pull request 1",
-            body = "Descrição da pull request",
+            body = "Descrição da pull request aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
             createdAt = "2023-06-01T12:00:00Z",
             user = PullUserModel(
                 login = "henrique-pompeo-modesto",

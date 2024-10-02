@@ -25,13 +25,17 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.feature.pulls.domain.model.PullModel
+import com.example.feature.pulls.domain.model.PullUserModel
 import com.example.feature.pulls.iu.PullsState
 import com.example.feature.pulls.iu.viewmodel.PullsViewModel
 
 @Composable
 fun PullsScreen(
+    navController: NavController,
     viewModel: PullsViewModel,
     owner: String,
     repo: String
@@ -44,7 +48,7 @@ fun PullsScreen(
     }
 
     Scaffold(
-        topBar = { Header(repo = repo) }
+        topBar = { Header(repo = repo, navController = navController) }
     ) { innerPadding ->
         Surface(
             modifier = Modifier
@@ -52,7 +56,7 @@ fun PullsScreen(
         ) {
             when (state) {
                 is PullsState.Success -> SetupSuccess(items = (state as PullsState.Success).pulls)
-                is PullsState.Empty -> TODO("EMPTY STATE")
+                is PullsState.Empty -> SetupEmpty()
                 is PullsState.Error -> SetupError(tryAgain = { viewModel.getPulls(owner, repo) } )
                 is PullsState.Loading -> SetupLoading()
             }
@@ -62,13 +66,16 @@ fun PullsScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Header(repo: String) {
+fun Header(
+    repo: String,
+    navController: NavController
+) {
     TopAppBar(
         title = {
             Text(text = repo)
         },
         navigationIcon = {
-            IconButton(onClick = { }) {
+            IconButton(onClick = { navController.popBackStack() }) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = "Voltar para a lista de repositórios"
@@ -85,6 +92,65 @@ fun SetupSuccess(items: List<PullModel>) {
             PullsListItem(pullModel = item)
         }
     }
+}
+
+@Composable
+fun SetupEmpty() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(80.dp)
+    ) {
+        Text(
+            modifier = Modifier.align(Alignment.Center),
+            text = "Nenhuma pull request encontrada"
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SetupSuccessPreview() {
+    SetupSuccess(
+        items = listOf(
+            PullModel(
+                title = "Pull request 1",
+                body = "Descrição da pull request",
+                createdAt = "2023-06-01T12:00:00Z",
+                user = PullUserModel(
+                    login = "henrique-pompeo-modesto",
+                    avatarUrl = "https://avatars.githubusercontent.com/u/26586900?v=4"
+                )
+            ),
+            PullModel(
+                title = "Pull request 1",
+                body = "Descrição da pull request",
+                createdAt = "2023-06-01T12:00:00Z",
+                user = PullUserModel(
+                    login = "henrique-pompeo-modesto",
+                    avatarUrl = "https://avatars.githubusercontent.com/u/26586900?v=4"
+                )
+            ),
+            PullModel(
+                title = "Pull request 1",
+                body = "Descrição da pull request",
+                createdAt = "2023-06-01T12:00:00Z",
+                user = PullUserModel(
+                    login = "henrique-pompeo-modesto",
+                    avatarUrl = "https://avatars.githubusercontent.com/u/26586900?v=4"
+                )
+            ),
+            PullModel(
+                title = "Pull request 1",
+                body = "Descrição da pull request",
+                createdAt = "2023-06-01T12:00:00Z",
+                user = PullUserModel(
+                    login = "henrique-pompeo-modesto",
+                    avatarUrl = "https://avatars.githubusercontent.com/u/26586900?v=4"
+                )
+            )
+        )
+    )
 }
 
 @Composable

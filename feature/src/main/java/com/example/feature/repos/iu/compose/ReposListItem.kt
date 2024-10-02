@@ -1,6 +1,8 @@
 package com.example.feature.repos.iu.compose
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -44,62 +46,60 @@ fun ReposListItem(
     Box(
         modifier = Modifier
             .padding(8.dp)
+            .border(width = 0.5.dp, color = MaterialTheme.colorScheme.surfaceVariant)
             .clickable {
                 navController.navigate("pulls/${reposModel.owner.login}/${reposModel.name}")
             }
     ) {
-        Card(
+        ListItem(
             modifier = Modifier
                 .align(Alignment.Center)
                 .fillMaxWidth()
-                .height(130.dp)
-        ) {
-            ListItem(
-                colors = ListItemDefaults.colors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                ),
-                overlineContent = {
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = reposModel.name,
-                        style = MaterialTheme.typography.titleMedium
+                .height(130.dp),
+            colors = ListItemDefaults.colors(
+                containerColor = MaterialTheme.colorScheme.background,
+            ),
+            overlineContent = {
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = reposModel.name,
+                    style = MaterialTheme.typography.titleMedium,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            },
+            headlineContent = {
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = reposModel.description,
+                    style = MaterialTheme.typography.bodySmall,
+                    maxLines = 2,
+                    minLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+            },
+            supportingContent = {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    SupportingInfo(
+                        onClick = { },
+                        text = reposModel.forksCount.formatNumberToString(),
+                        icon = painterResource(R.drawable.code_fork),
+                        contentDescription = "Número de forks"
                     )
-                },
-                headlineContent = {
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = reposModel.description,
-                        style = MaterialTheme.typography.bodySmall,
-                        maxLines = 2,
-                        minLines = 2,
-                        overflow = TextOverflow.Ellipsis
+                    SupportingInfo(
+                        onClick = { },
+                        text = reposModel.stargazersCount.formatNumberToString(),
+                        icon = painterResource(R.drawable.filled_star),
+                        contentDescription = "Número de stars"
                     )
-                },
-                supportingContent = {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        SupportingInfo(
-                            onClick = { },
-                            text = reposModel.forksCount.formatNumberToString(),
-                            icon = painterResource(R.drawable.code_fork),
-                            contentDescription = "Número de forks"
-                        )
-                        SupportingInfo(
-                            onClick = { },
-                            text = reposModel.stargazersCount.formatNumberToString(),
-                            icon = painterResource(R.drawable.filled_star),
-                            contentDescription = "Número de stars"
-                        )
-                    }
-                },
-                trailingContent = {
-                    OwnerSection(reposModel.owner)
-                },
-                tonalElevation = 2.dp,
-                shadowElevation = 5.dp
-            )
-        }
+                }
+            },
+            trailingContent = {
+                OwnerSection(reposModel.owner)
+            }
+        )
     }
 }
 
@@ -120,7 +120,9 @@ fun SupportingInfo(
                 modifier = Modifier.size(AssistChipDefaults.IconSize)
             )
         },
-        modifier = Modifier.padding(end = 16.dp)
+        border = BorderStroke(0.5.dp, MaterialTheme.colorScheme.surfaceVariant),
+        modifier = Modifier
+            .padding(end = 16.dp)
     )
 }
 
@@ -146,6 +148,7 @@ fun OwnerSection(owner: ReposOwnerModel) {
         Text(
             modifier = Modifier.align(Alignment.BottomCenter),
             text = owner.login,
+            style = MaterialTheme.typography.bodySmall,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
