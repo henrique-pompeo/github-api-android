@@ -69,13 +69,17 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.hilt)
     implementation(libs.hilt.navigation.compose)
+    testImplementation(libs.junit.junit)
     ksp(libs.hilt.android.compiler)
     ksp(libs.hilt.compiler)
     testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
 }
