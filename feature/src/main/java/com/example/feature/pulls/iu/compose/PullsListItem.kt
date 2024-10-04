@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.feature.pulls.domain.model.PullModel
 import com.example.feature.pulls.domain.model.PullUserModel
 
@@ -98,7 +99,9 @@ fun UserSection(user: PullUserModel) {
             GlideImage(
                 model = user.avatarUrl,
                 contentDescription = "Avatar de ${user.login}"
-            )
+            ) {
+                it.diskCacheStrategy(DiskCacheStrategy.DATA)
+            }
         }
         Text(
             text = user.login,

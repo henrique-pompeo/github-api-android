@@ -33,6 +33,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.feature.R
 import com.example.feature.commons.utils.extensions.IntExt.formatNumberToString
 import com.example.feature.repos.domain.model.ReposModel
@@ -143,7 +144,9 @@ fun OwnerSection(owner: ReposOwnerModel) {
             GlideImage(
                 model = owner.avatarUrl,
                 contentDescription = "Avatar de ${owner.login}"
-            )
+            ) {
+                it.diskCacheStrategy(DiskCacheStrategy.DATA)
+            }
         }
         Text(
             modifier = Modifier.align(Alignment.BottomCenter),
