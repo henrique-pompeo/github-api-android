@@ -44,6 +44,8 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "META-INF/LICENSE.md"
+            excludes += "META-INF/LICENSE-notice.md"
         }
     }
 }
@@ -69,7 +71,6 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.hilt)
     implementation(libs.hilt.navigation.compose)
-    testImplementation(libs.junit.junit)
     ksp(libs.hilt.android.compiler)
     ksp(libs.hilt.compiler)
     testImplementation(libs.junit)
