@@ -77,7 +77,7 @@ tratá-los e disponibilizar o conteúdo para a camada compose por meio de progra
 
 # Dependências
 
-## Biblioteca de testes
+## Testes
 - Junit
 - Espresso
 - Mockk
@@ -92,10 +92,12 @@ tratá-los e disponibilizar o conteúdo para a camada compose por meio de progra
 - Material design
 - Glide
 
+## Injeção de dependência
+- Hilt
+
 ## Network
 - Retrofit
 - Converter Gson
-- Glide
 
 # Testes
 Este projeto foi testado em nível de testes unitários e testes integrados. Para os testes unitários
