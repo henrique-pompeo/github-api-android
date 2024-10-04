@@ -3,8 +3,6 @@ package com.example.githubapiandroid.di
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.NetworkInfo
-import android.os.Build
 import com.example.feature.pulls.data.service.PullsService
 import com.example.feature.repos.data.service.ReposService
 import dagger.Module

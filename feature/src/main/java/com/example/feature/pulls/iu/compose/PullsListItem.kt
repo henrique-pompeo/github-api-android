@@ -1,6 +1,7 @@
 package com.example.feature.pulls.iu.compose
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,10 +33,14 @@ import com.example.feature.pulls.domain.model.PullUserModel
 
 @Composable
 fun PullsListItem(pullModel: PullModel) {
+    val uriHandler = LocalUriHandler.current
     Box(
         modifier = Modifier
             .padding(8.dp)
             .border(width = 0.5.dp, color = MaterialTheme.colorScheme.surfaceVariant)
+            .clickable {
+                uriHandler.openUri(pullModel.htmlUrl)
+            }
     ) {
         ListItem(
             modifier = Modifier
@@ -116,10 +122,11 @@ fun UserSection(user: PullUserModel) {
 @Composable
 fun PullsListItemPreview() {
     PullsListItem(
-        PullModel(
+        pullModel = PullModel(
             title = "Pull request 1",
             body = "Descrição da pull request aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
             createdAt = "2023-06-01T12:00:00Z",
+            htmlUrl = "",
             user = PullUserModel(
                 login = "henrique-pompeo-modesto",
                 avatarUrl = "https://avatars.githubusercontent.com/u/26586900?v=4"

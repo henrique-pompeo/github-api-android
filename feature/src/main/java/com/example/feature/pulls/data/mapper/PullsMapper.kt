@@ -11,6 +11,7 @@ class PullsMapper {
                 title = it.title,
                 body = it.body,
                 createdAt = it.createdAt,
+                htmlUrl = it.htmlUrl,
                 user = PullUserModel(
                     login = it.user.login,
                     avatarUrl = it.user.avatarUrl

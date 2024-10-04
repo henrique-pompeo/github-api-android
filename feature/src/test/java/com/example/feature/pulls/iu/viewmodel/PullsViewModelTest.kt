@@ -68,6 +68,7 @@ class UserViewModelTest {
             title = "Pull request 1",
             body = "Descrição da pull request",
             createdAt = "2023-06-01T12:00:00Z",
+            htmlUrl = "",
             user = PullUserModel(
                 login = "henrique-pompeo-modesto",
                 avatarUrl = "https://avatars.githubusercontent.com/u/26586900?v=4"
@@ -77,6 +78,7 @@ class UserViewModelTest {
             title = "Pull request 1",
             body = "Descrição da pull request",
             createdAt = "2023-06-01T12:00:00Z",
+            htmlUrl = "",
             user = PullUserModel(
                 login = "henrique-pompeo-modesto",
                 avatarUrl = "https://avatars.githubusercontent.com/u/26586900?v=4"
@@ -86,6 +88,7 @@ class UserViewModelTest {
             title = "Pull request 1",
             body = "Descrição da pull request",
             createdAt = "2023-06-01T12:00:00Z",
+            htmlUrl = "",
             user = PullUserModel(
                 login = "henrique-pompeo-modesto",
                 avatarUrl = "https://avatars.githubusercontent.com/u/26586900?v=4"
@@ -95,6 +98,7 @@ class UserViewModelTest {
             title = "Pull request 1",
             body = "Descrição da pull request",
             createdAt = "2023-06-01T12:00:00Z",
+            htmlUrl = "",
             user = PullUserModel(
                 login = "henrique-pompeo-modesto",
                 avatarUrl = "https://avatars.githubusercontent.com/u/26586900?v=4"
