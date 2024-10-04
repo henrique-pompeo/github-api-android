@@ -1,8 +1,8 @@
-package com.example.feature.repos.iu.viewmodel
+package com.example.feature.repos.ui.viewmodel
 
 import com.example.feature.repos.domain.interfaces.ReposRepository
 import com.example.feature.repos.domain.model.ReposItemsModel
-import com.example.feature.repos.iu.ReposState
+import com.example.feature.repos.ui.ReposState
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers

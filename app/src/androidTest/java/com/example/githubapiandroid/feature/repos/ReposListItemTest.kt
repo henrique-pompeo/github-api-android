@@ -7,7 +7,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.navigation.NavHostController
 import com.example.feature.repos.domain.model.ReposModel
 import com.example.feature.repos.domain.model.ReposOwnerModel
-import com.example.feature.repos.iu.compose.ReposListItem
+import com.example.feature.repos.ui.compose.ReposListItem
 import com.example.githubapiandroid.MainActivity
 import io.mockk.mockk
 import org.junit.Rule

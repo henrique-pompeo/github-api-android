@@ -12,9 +12,9 @@ import androidx.navigation.NavHostController
 import com.example.feature.repos.domain.model.ReposItemsModel
 import com.example.feature.repos.domain.model.ReposModel
 import com.example.feature.repos.domain.model.ReposOwnerModel
-import com.example.feature.repos.iu.ReposState
-import com.example.feature.repos.iu.compose.ReposScreen
-import com.example.feature.repos.iu.viewmodel.ReposViewModel
+import com.example.feature.repos.ui.ReposState
+import com.example.feature.repos.ui.compose.ReposScreen
+import com.example.feature.repos.ui.viewmodel.ReposViewModel
 import com.example.githubapiandroid.MainActivity
 import io.mockk.Awaits
 import io.mockk.Runs

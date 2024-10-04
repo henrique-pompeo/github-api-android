@@ -8,8 +8,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.feature.pulls.iu.compose.PullsScreen
 import com.example.feature.pulls.iu.viewmodel.PullsViewModel
-import com.example.feature.repos.iu.compose.ReposScreen
-import com.example.feature.repos.iu.viewmodel.ReposViewModel
+import com.example.feature.repos.ui.compose.ReposScreen
+import com.example.feature.repos.ui.viewmodel.ReposViewModel
 
 @Composable
 fun AppNavigation(navController: NavHostController = rememberNavController()) {

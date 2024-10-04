@@ -1,4 +1,4 @@
-package com.example.feature.repos.iu
+package com.example.feature.repos.ui
 
 import com.example.feature.repos.domain.model.ReposItemsModel
 

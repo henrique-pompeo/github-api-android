@@ -1,4 +1,4 @@
-package com.example.feature.repos.iu.compose
+package com.example.feature.repos.ui.compose
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -34,8 +34,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.feature.repos.domain.model.ReposModel
 import com.example.feature.repos.domain.model.ReposOwnerModel
-import com.example.feature.repos.iu.ReposState
-import com.example.feature.repos.iu.viewmodel.ReposViewModel
+import com.example.feature.repos.ui.ReposState
+import com.example.feature.repos.ui.viewmodel.ReposViewModel
 
 @Composable
 fun ReposScreen(

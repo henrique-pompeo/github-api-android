@@ -1,4 +1,4 @@
-package com.example.feature.repos.iu.compose
+package com.example.feature.repos.ui.compose
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
