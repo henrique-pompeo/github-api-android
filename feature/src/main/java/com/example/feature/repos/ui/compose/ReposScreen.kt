@@ -8,9 +8,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -28,10 +25,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.feature.R
 import com.example.feature.repos.domain.model.ReposModel
 import com.example.feature.repos.domain.model.ReposOwnerModel
 import com.example.feature.repos.ui.ReposState
@@ -93,8 +93,8 @@ fun Header() {
         navigationIcon = {
             IconButton(onClick = { }) {
                 Icon(
-                    imageVector = Icons.Filled.Menu,
-                    contentDescription = "Menu"
+                    painter = painterResource(R.drawable.menu_24px),
+                    contentDescription = stringResource(R.string.menu)
                 )
             }
         }
@@ -204,8 +204,8 @@ fun SetupError(tryAgain: () -> Unit) {
             Icon(
                 modifier = Modifier
                     .size(48.dp),
-                imageVector = Icons.Filled.Refresh,
-                contentDescription = "Menu",
+                painter = painterResource(R.drawable.menu_24px),
+                contentDescription = stringResource(R.string.menu),
 
             )
         }

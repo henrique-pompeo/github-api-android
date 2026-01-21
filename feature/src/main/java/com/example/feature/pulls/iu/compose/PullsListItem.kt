@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -27,7 +28,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.feature.pulls.domain.model.PullModel
 import com.example.feature.pulls.domain.model.PullUserModel
 
@@ -104,10 +104,9 @@ fun UserSection(user: PullUserModel) {
         ) {
             GlideImage(
                 model = user.avatarUrl,
-                contentDescription = "Avatar de ${user.login}"
-            ) {
-                it.diskCacheStrategy(DiskCacheStrategy.DATA)
-            }
+                contentDescription = "Avatar de ${user.login}",
+                modifier = Modifier.fillMaxSize(),
+            )
         }
         Text(
             text = user.login,

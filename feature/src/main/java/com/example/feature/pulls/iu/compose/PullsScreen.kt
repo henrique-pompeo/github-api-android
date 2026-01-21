@@ -7,9 +7,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -25,9 +22,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.feature.R
 import com.example.feature.pulls.domain.model.PullModel
 import com.example.feature.pulls.domain.model.PullUserModel
 import com.example.feature.pulls.iu.PullsState
@@ -77,8 +77,8 @@ fun Header(
         navigationIcon = {
             IconButton(onClick = { navController.popBackStack() }) {
                 Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "Voltar para a lista de repositórios"
+                    painter = painterResource(R.drawable.arrow_back_24px),
+                    contentDescription = stringResource(R.string.back_to_repos)
                 )
             }
         }
@@ -172,7 +172,7 @@ fun SetupError(tryAgain: () -> Unit) {
         ) {
             Icon(
                 modifier = Modifier.size(48.dp),
-                imageVector = Icons.Filled.Refresh,
+                painter = painterResource(R.drawable.refresh_24px),
                 contentDescription = "Menu"
             )
         }

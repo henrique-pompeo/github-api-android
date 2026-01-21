@@ -1,3 +1,5 @@
 <resources>
     <string name="title_activity_repos">ReposActivity</string>
+    <string name="back_to_repos">Voltar para a lista de repositórios</string>
+    <string name="menu">Menu</string>
 </resources>
