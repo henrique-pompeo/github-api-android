@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -43,12 +44,13 @@ fun ReposListItem(
     reposModel: ReposModel,
     navController: NavController
 ) {
+    val pulls = "pulls/"
     Box(
         modifier = Modifier
             .padding(8.dp)
             .border(width = 0.5.dp, color = MaterialTheme.colorScheme.surfaceVariant)
             .clickable {
-                navController.navigate("pulls/${reposModel.owner.login}/${reposModel.name}")
+                navController.navigate("$pulls${reposModel.owner.login}/${reposModel.name}")
             }
     ) {
         ListItem(
@@ -86,13 +88,13 @@ fun ReposListItem(
                         onClick = { },
                         text = reposModel.forksCount.formatNumberToString(),
                         icon = painterResource(R.drawable.code_fork),
-                        contentDescription = "Número de forks"
+                        contentDescription = stringResource(R.string.forks_number)
                     )
                     SupportingInfo(
                         onClick = { },
                         text = reposModel.stargazersCount.formatNumberToString(),
                         icon = painterResource(R.drawable.filled_star),
-                        contentDescription = "Número de stars"
+                        contentDescription = stringResource(R.string.stars_number)
                     )
                 }
             },
@@ -142,7 +144,7 @@ fun OwnerSection(owner: ReposOwnerModel) {
         ) {
             GlideImage(
                 model = owner.avatarUrl,
-                contentDescription = "Avatar de ${owner.login}"
+                contentDescription = stringResource(id = R.string.avatar_of, owner.login),
             )
         }
         Text(

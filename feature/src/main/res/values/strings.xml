@@ -2,4 +2,14 @@
     <string name="title_activity_repos">ReposActivity</string>
     <string name="back_to_repos">Voltar para a lista de repositórios</string>
     <string name="menu">Menu</string>
+    <string name="no_description">Sem descrição</string>
+    <string name="avatar_of">Avatar de %s</string>
+    <string name="no_pulls_found">Nenhuma pull request encontrada</string>
+    <string name="error_loading_pulls">Falha ao carregar lista</string>
+    <string name="loading_pulls">Carregando lista de pulls…</string>
+    <string name="forks_number">Número de forks</string>
+    <string name="stars_number">Número de stars</string>
+    <string name="repos_list">Lista de repositórios</string>
+    <string name="no_repos_found">Nenhum repositório encontrado</string>
+    <string name="error_loading_repos">Falha ao carregar lista</string>
 </resources>

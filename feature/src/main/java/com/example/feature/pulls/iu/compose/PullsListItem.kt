@@ -22,18 +22,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import com.example.feature.R
 import com.example.feature.pulls.domain.model.PullModel
 import com.example.feature.pulls.domain.model.PullUserModel
 
 @Composable
 fun PullsListItem(pullModel: PullModel) {
     val uriHandler = LocalUriHandler.current
+    val ddMMyyyy = "dd/MM/yyyy"
     Box(
         modifier = Modifier
             .padding(8.dp)
@@ -62,7 +65,7 @@ fun PullsListItem(pullModel: PullModel) {
             headlineContent = {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = pullModel.createdAt.format(Locale.current, "dd/MM/yyyy"),
+                    text = pullModel.createdAt.format(Locale.current, ddMMyyyy),
                     color = MaterialTheme.colorScheme.surfaceVariant,
                     style = MaterialTheme.typography.bodySmall
                 )
@@ -73,7 +76,7 @@ fun PullsListItem(pullModel: PullModel) {
                 ) {
                     Text(
                         modifier = Modifier.fillMaxWidth(),
-                        text = pullModel.body?: "Sem descrição",
+                        text = pullModel.body?: stringResource(id = R.string.no_description),
                         style = MaterialTheme.typography.bodySmall,
                         maxLines = 2,
                         minLines = 2,
@@ -104,7 +107,7 @@ fun UserSection(user: PullUserModel) {
         ) {
             GlideImage(
                 model = user.avatarUrl,
-                contentDescription = "Avatar de ${user.login}",
+                contentDescription = stringResource(id = R.string.avatar_of, user.login),
                 modifier = Modifier.fillMaxSize(),
             )
         }

@@ -88,7 +88,7 @@ fun ReposScreen(
 fun Header() {
     TopAppBar(
         title = {
-            Text(text = "Lista de repositórios")
+            Text(text = stringResource(R.string.repos_list))
         },
         navigationIcon = {
             IconButton(onClick = { }) {
@@ -142,7 +142,7 @@ fun SetupEmpty() {
     ) {
         Text(
             modifier = Modifier.align(Alignment.Center),
-            text = "Nenhum repositório encontrado"
+            text = stringResource(R.string.no_repos_found)
         )
     }
 }
@@ -204,14 +204,14 @@ fun SetupError(tryAgain: () -> Unit) {
             Icon(
                 modifier = Modifier
                     .size(48.dp),
-                painter = painterResource(R.drawable.menu_24px),
+                painter = painterResource(R.drawable.refresh_24px),
                 contentDescription = stringResource(R.string.menu),
 
             )
         }
         Text(
             modifier = Modifier.align(Alignment.BottomCenter),
-            text = "Falha ao carregar lista"
+            text = stringResource(R.string.error_loading_repos)
         )
     }
 }

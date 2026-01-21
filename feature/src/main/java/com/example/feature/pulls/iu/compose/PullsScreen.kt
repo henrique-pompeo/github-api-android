@@ -105,7 +105,7 @@ fun SetupEmpty() {
     ) {
         Text(
             modifier = Modifier.align(Alignment.Center),
-            text = "Nenhuma pull request encontrada"
+            text = stringResource(R.string.no_pulls_found)
         )
     }
 }
@@ -173,12 +173,12 @@ fun SetupError(tryAgain: () -> Unit) {
             Icon(
                 modifier = Modifier.size(48.dp),
                 painter = painterResource(R.drawable.refresh_24px),
-                contentDescription = "Menu"
+                contentDescription = stringResource(R.string.menu),
             )
         }
         Text(
             modifier = Modifier.align(Alignment.BottomCenter),
-            text = "Falha ao carregar lista"
+            text = stringResource(R.string.error_loading_pulls)
         )
     }
 }
@@ -197,7 +197,7 @@ fun SetupLoading() {
         )
         Text(
             modifier = Modifier.align(Alignment.BottomCenter),
-            text = "Carregando lista de pulls..."
+            text = stringResource(R.string.loading_pulls)
         )
     }
 }
